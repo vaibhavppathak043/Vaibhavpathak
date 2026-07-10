@@ -21,6 +21,7 @@ The team at Google Play Store wants to develop a feature that would enable them 
 
 #import the libraries
 import pandas as pd
+import streamlit as st
 import numpy as np
 
 #read the dataset and check the first five rows
