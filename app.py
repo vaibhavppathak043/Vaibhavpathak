@@ -36,7 +36,7 @@ Generic form of same equation is,
 import pandas as pd
 import streamlit as st
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn import linear_model
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('/content/sample_data/homeprices.csv')
