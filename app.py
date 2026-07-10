@@ -294,23 +294,23 @@ You'll be using sns.distplot for plotting a distribution plot. Check out its off
 """
 
 #Create a distribution plot for rating
-sns.distplot(inp1.Rating)
+sns.histplot(inp1.Rating)
 plt.show()
 
 #Change the number of bins
-sns.distplot(inp1.Rating, bins=20)
+sns.histplot(inp1.Rating, bins=20)
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 
 #Change the colour of bins to green
-sns.distplot(inp1.Rating, bins=20, color="g")
+sns.histplot(inp1.Rating, bins=20, color="g")
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 
 #Apply matplotlib functionalities
-sns.distplot(inp1.Rating, bins=20, color="g")
+sns.histplot(inp1.Rating, bins=20, color="g")
 plt.title("Distribution of app ratings", fontsize=12)
 fig = plt.gcf()
 st.pyplot(fig)
@@ -343,21 +343,21 @@ plt.style.available
 plt.style.use("tableau-colorblind10")
 
 #Change the number of bins to 20
-sns.distplot(inp1.Rating, bins=20)
+sns.histplot(inp1.Rating, bins=20)
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 
 plt.style.use("ggplot")
 
-sns.distplot(inp1.Rating, bins=20)
+sns.histplot(inp1.Rating, bins=20)
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 
 plt.style.use("dark_background")
 
-sns.distplot(inp1.Rating, bins=20)
+sns.histplot(inp1.Rating, bins=20)
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
@@ -365,7 +365,7 @@ plt.close(fig)
 # Commented out IPython magic to ensure Python compatibility.
 plt.style.use("default")
 
-sns.distplot(inp1.Rating, bins=20)
+sns.histplot(inp1.Rating, bins=20)
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
