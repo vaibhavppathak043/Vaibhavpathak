@@ -39,20 +39,30 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
+st.set_page_config(
+    page_title="House Price Prediction",
+    layout="wide"
+)
+
+st.title("🏠 House Price Prediction using Linear Regression")
+
 df = pd.read_csv("homeprices.csv")
-df
+st.dataframe(df)
 
 # Commented out IPython magic to ensure Python compatibility.
 # %matplotlib inline
-plt.xlabel('area')
-plt.ylabel('price')
-plt.scatter(df.area,df.price,color='red',marker='+')
+fig, ax = plt.subplots()
 
+ax.scatter(df.area, df.price, color="red", marker="+")
+ax.set_xlabel("Area")
+ax.set_ylabel("Price")
+
+st.pyplot(fig)
 new_df = df.drop('price',axis='columns')
-new_df
+st.dataframe(new_df)
 
 price = df.price
-price
+st.write(price)
 
 # Create linear regression object
 reg = LinearRegression()
@@ -80,10 +90,10 @@ area_df = pd.read_csv("areas.csv")
 area_df.head(3)
 
 p = reg.predict(area_df)
-p
+st.write(p)
 
 area_df['prices']=p
-area_df
+st.dataframe(area_df)
 
 area_df.to_csv("prediction.csv")
 
