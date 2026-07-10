@@ -8,11 +8,18 @@ Original file is located at
 
 # Google Playstore Case Study
 
-In this module you’ll be learning data visualisation with the help of a case study. This will enable you to understand how visualisation aids you in solving business problems.
+In this module you'll be learning data visualisation with the help of a case study. This will enable you to understand how visualisation aids you in solving business problems.
 
 **Problem Statement**
 
-The team at Google Play Store wants to develop a feature that would enable them to boost visibility for the most promising apps. Now, this analysis would require a preliminary understanding of the features that define a well-performing app. You can ask questions like:
+The team at Google Play Store wants to develop a feature that would enable them to boost visibility for the most promising apps. Now, this analysis would require a preliminary understanding of the features that make an app popular.
+
+**Objective**
+
+Analyse the Android App Market by collecting the data, exploring the data, cleaning the data and then drawing insights.
+
+**Questions to Answer**
+
 - Does a higher size or price necessarily mean that an app would perform better than the other apps?
 - Or does a higher number of installs give a clear picture of which app would have a better rating than others?
 
@@ -150,7 +157,7 @@ The data that we have needs to make sense and therefore you can perform certain 
 
 - Rating is between 1 and 5 for all the apps.
 - Number of Reviews is less than or equal to the number of Installs.
-- Free Apps shouldn’t have a price greater than 0.
+- Free Apps shouldn't have a price greater than 0.
 """
 
 #Perform the sanity checks on the Reviews column
@@ -165,14 +172,14 @@ inp1[(inp1.Type == "Free") & (inp1.Price>0)]
 
 """#### Outliers Analysis Using Boxplot
 
-Now you need to start identifying and removing extreme values or __outliers__ from our dataset. These values can tilt our analysis and often provide us with a biased perspective of the data available. This is where you’ll start utilising visualisation to achieve your tasks. And the best visualisation to use here would be the box plot. Boxplots are one of the best ways of analysing the spread of a numeric variable
+Now you need to start identifying and removing extreme values or __outliers__ from our dataset. These values can tilt our analysis and often provide us with a biased perspective of the data available.
 
 
 Using a box plot you can identify the outliers as follows:
 
 ![BoxPlots to Identify Outliers](images\Boxplot.png)
 
-- Outliers in data can arise due to genuine reasons or because of dubious entries. In the latter case, you should go ahead and remove such entries immediately. Use a boxplot to observe, analyse and remove them.
+- Outliers in data can arise due to genuine reasons or because of dubious entries. In the latter case, you should go ahead and remove such entries immediately. Use a boxplot to observe, analyse and remove such entries
 - In the former case, you should determine whether or not removing them would add value to your analysis procedure.
 
 - You can create a box plot directly from pandas dataframe or the matplotlib way as you learnt in the previous session. Check out their official documentation here:
@@ -209,7 +216,7 @@ inp1.shape
 
 """### Histograms
 
-Histograms can also be used in conjuction with boxplots for data cleaning and data handling purposes. You can use it to check the spread of a numeric variable. Histograms generally work by bucketing the entire range of values that a particular variable takes to specific __bins__. After that, it uses vertical bars to denote the total number of records in a specific bin, which is also known as its __frequency__.
+Histograms can also be used in conjuction with boxplots for data cleaning and data handling purposes. You can use it to check the spread of a numeric variable. Histograms generally work by bucketing the data into uniform buckets and then plotting the frequency of data points in each bucket.
 
 ![Histogram](images\Histogram.png)
 
@@ -284,7 +291,7 @@ import seaborn as sns
 
 """#### Distribution Plots
 
-A distribution plot is pretty similar to the histogram functionality in matplotlib. Instead of a frequency plot, it plots an approximate probability density for that rating bucket. And the curve (or the __KDE__) that gets drawn over the distribution is the approximate probability density curve.
+A distribution plot is pretty similar to the histogram functionality in matplotlib. Instead of a frequency plot, it plots an approximate probability density for that rating bucket. And the curve (or the kernel density estimate) will approximate the probability density of the given variable.
 
 The following is an example of a distribution plot. Notice that now instead of frequency on the left axis, it has the density for each bin or bucket.
 
@@ -317,13 +324,14 @@ st.pyplot(fig)
 plt.close(fig)
 """#### Styling Options
 
-One of the biggest advantages of using Seaborn is that you can retain its aesthetic properties and also the Matplotlib functionalities to perform additional customisations. Before we continue with our case study analysis, let’s study some styling options that are available in Seaborn.
+One of the biggest advantages of using Seaborn is that you can retain its aesthetic properties and also the Matplotlib functionalities to perform additional customisations. Before we continue with our exploration, let's focus on the styling options that seaborn provides.
 
 -  Check out the official documentation:https://seaborn.pydata.org/generated/seaborn.set_style.html
 """
 
 #Check all the styling options
-?sns.set_style
+# Note: IPython magic commands (?) are commented out for regular Python scripts
+# ?sns.set_style
 sns.set_style("dark")
 sns.histplot(inp1["Rating"], bins=20, color="g", kde=True)
 plt.title("Distribution of app ratings", fontsize=12)
@@ -421,15 +429,15 @@ plt.close(fig)
 
 """#### Scatter Plots
 
-Scatterplots are perhaps one of the most commonly used as well one of the most powerful visualisations you can use in the field of machine learning. They are pretty crucial in revealing relationships between the data points and you can generally deduce some sort of trends in the data with the help of a scatter plot.
+Scatterplots are perhaps one of the most commonly used as well one of the most powerful visualisations you can use in the field of machine learning. They are pretty crucial in revealing relationships between variables and are used across a vast range of domains.
 
 ![Scatterplot](images\scatter.png)
 
-- They're pretty useful in regression problems to check whether a linear trend exists in the data or not. For example, in the image below, creating a linear model in the first case makes far more sense since a clear straight line trend is visible.
+- They're pretty useful in regression problems to check whether a linear trend exists in the data or not. For example, in the image below, creating a linear model in the first case makes far more sense than the second or third case.
 
 ![Scatterplot-Reg](images\regression3.png)
 
-- Also, they help in observing __naturally occuring clusters__. In the following image, the marks of students in Maths and Biology has been plotted.You can clearly group the students to 4 clusters now. Cluster 1 are students who score very well in Biology but very poorly in Maths, Cluster 2 are students who score equally well in both the subjects and so on.
+- Also, they help in observing __naturally occuring clusters__. In the following image, the marks of students in Maths and Biology has been plotted.You can clearly group the students to 4 clusters now.
 
 ![Scatter-Clusters](images\Clusters.png)
 
@@ -450,7 +458,8 @@ plt.close(fig)
 ### Plot the same thing now using a jointplot
 sns.set_style("white")
 
-?sns.jointplot
+# Note: IPython magic commands (?) are commented out for regular Python scripts
+# ?sns.jointplot
 
 sns.jointplot(x=inp1.Size, y=inp1.Rating)
 fig = plt.gcf()
@@ -482,11 +491,11 @@ plt.close(fig)
 
 """**Pair Plots**
 
-- When you have several numeric variables, making multiple scatter plots becomes rather tedious. Therefore, a pair plot visualisation is preferred where all the scatter plots are in a single view in the form of a matrix
+- When you have several numeric variables, making multiple scatter plots becomes rather tedious. Therefore, a pair plot visualisation is preferred where all the scatter plots are in a single view in the form of a grid.
  - For the non-diagonal views, it plots a **scatter plot** between 2 numeric variables
  - For the diagonal views, it plots a **histogram**
 
-Pair Plots help in identifying the trends between a target variable and the predictor variables pretty quickly. For example, say you want to predict how your company’s profits are affected by three different factors. In order to choose which you created a pair plot containing profits and the three different factors as the variables. Here are the scatterplots of profits vs the three variables that you obtained from the pair plot.
+Pair Plots help in identifying the trends between a target variable and the predictor variables pretty quickly. For example, say you want to predict how your company's profits are affected by three factors, you can use a pair plot to quickly assess the relationship.
 
 ![Pairplots](images\pairplots2.png)
 
@@ -496,7 +505,8 @@ You'll be using **sns.pairplot()** for this visualisation. Check out its officia
 """
 
 ## Create a pair plot for Reviews, Size, Price and Rating
-?sns.pairplot
+# Note: IPython magic commands (?) are commented out for regular Python scripts
+# ?sns.pairplot
 
 sns.pairplot(data=inp1, vars=['Reviews', 'Size', 'Price', 'Rating'])
 fig = plt.gcf()
@@ -561,11 +571,11 @@ inp1['Genres'].value_counts()
 c = ['Tools','Entertainment','Medical','Education']
 inp5= inp1[inp1['Genres'].isin(c)]
 
-sns.boxplot(x=inp5['Genres'],y=inp1.Rating)
+sns.boxplot(x=inp5['Genres'],y=inp5.Rating)
 
 """#### Heat Maps
 
-Heat mapsutilise the concept of using colours and colour intensities to visualise a range of values. You must have seen heat maps in cricket or football broadcasts on television to denote the players’ areas of strength and weakness.
+Heat mapsutilise the concept of using colours and colour intensities to visualise a range of values. You must have seen heat maps in cricket or football broadcasts on television to denote the players' heat.
 
 ![HeatMap](images\heatmap1.png)
 
@@ -646,20 +656,20 @@ pd.pivot_table(data=inp1, values="Installs", index="updated_month", columns="Con
 monthly = pd.pivot_table(data=inp1, values="Installs", index="updated_month", columns="Content Rating", aggfunc=sum)
 
 ##Plot the stacked bar chart.
-monthly.plot(kind="bar", stacked="True", figsize=[10,6])
+monthly.plot(kind="bar", stacked=True, figsize=[10,6])
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 ##Plot the stacked bar chart again wrt to the proportions.
 monthly_perc = monthly[["Everyone","Everyone 10+","Mature 17+","Teen"]].apply(lambda x: x/x.sum(), axis=1)
 
-monthly_perc.plot(kind="bar", stacked="True", figsize=[10,6])
+monthly_perc.plot(kind="bar", stacked=True, figsize=[10,6])
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 """#### Plotly
 
-Plotly is a Python library used for creating interactive visual charts. You can take a look at how you can use it to create aesthetic looking plots with a lot of user-friendly functionalities like hover, zoom, etc.
+Plotly is a Python library used for creating interactive visual charts. You can take a look at how you can use it to create aesthetic looking plots with a lot of user-friendly functionalities like hovering over data points to view details.
 
 Check out this link for installation and documentation:https://plot.ly/python/getting-started/
 """
@@ -680,4 +690,3 @@ import plotly.express as px
 #Prepare the plot
 fig = px.line(res, x="updated_month", y="Rating", title="Montly average rating")
 st.plotly_chart(fig)
-
