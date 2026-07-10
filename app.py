@@ -34,6 +34,7 @@ Generic form of same equation is,
 """
 
 import pandas as pd
+import streamlit as st
 import numpy as np
 from sklearn import linear_model
 import matplotlib.pyplot as plt
