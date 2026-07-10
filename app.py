@@ -665,7 +665,8 @@ Check out this link for installation and documentation:https://plot.ly/python/ge
 """
 
 #Install plotly
-!pip install plotly
+import subprocess
+subprocess.run(["pip", "install", "plotly"], check=True)
 
 #Take the table you want to plot in a separate variable
 res = inp1.groupby(["updated_month"])[['Rating']].mean()
@@ -677,6 +678,6 @@ res
 import plotly.express as px
 
 #Prepare the plot
-fig = px.line(res, x="updated_month",y="Rating",title="Montly average rating")
-fig.show()
+fig = px.line(res, x="updated_month", y="Rating", title="Montly average rating")
+st.plotly_chart(fig)
 
