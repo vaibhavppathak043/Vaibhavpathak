@@ -36,10 +36,10 @@ Generic form of same equation is,
 import pandas as pd
 import streamlit as st
 import numpy as np
-from sklearn import linear_model
+from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('/content/sample_data/homeprices.csv')
+df = pd.read_csv("homeprices.csv")
 df
 
 # Commented out IPython magic to ensure Python compatibility.
@@ -55,7 +55,7 @@ price = df.price
 price
 
 # Create linear regression object
-reg = linear_model.LinearRegression()
+reg = LinearRegression()
 reg.fit(new_df,price)
 
 """**(1) Predict price of a home with area = 3300 sqr ft**"""
@@ -76,7 +76,7 @@ reg.predict([[5000]])
 
 """<h3 style="color:purple">Generate CSV file with list of home price predictions</h3>"""
 
-area_df = pd.read_csv("/content/sample_data/areas.csv")
+area_df = pd.read_csv("areas.csv")
 area_df.head(3)
 
 p = reg.predict(area_df)
@@ -85,7 +85,7 @@ p
 area_df['prices']=p
 area_df
 
-area_df.to_csv("/content/sample_data/prediction.csv")
+area_df.to_csv("prediction.csv")
 
 """<h3>Exercise</h3>
 
