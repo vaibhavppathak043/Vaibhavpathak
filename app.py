@@ -25,7 +25,7 @@ import streamlit as st
 import numpy as np
 
 #read the dataset and check the first five rows
-inp0 = pd.read_csv("/content/sample_data/googleplaystore_v2.csv")
+inp0 = pd.read_csv("googleplaystore_v2.csv")
 inp0.head()
 
 #Check the shape of the dataframe
@@ -221,7 +221,6 @@ You'll be using plt.hist() to plot a histogram. Check out its official documenta
 """
 
 #Create a histogram of the Reviews
-?plt.hist
 plt.hist(inp1.Reviews)
 plt.show()
 
@@ -300,17 +299,22 @@ plt.show()
 
 #Change the number of bins
 sns.distplot(inp1.Rating, bins=20)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 #Change the colour of bins to green
 sns.distplot(inp1.Rating, bins=20, color="g")
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 #Apply matplotlib functionalities
 sns.distplot(inp1.Rating, bins=20, color="g")
 plt.title("Distribution of app ratings", fontsize=12)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 """#### Styling Options
 
 One of the biggest advantages of using Seaborn is that you can retain its aesthetic properties and also the Matplotlib functionalities to perform additional customisations. Before we continue with our case study analysis, let’s study some styling options that are available in Seaborn.
@@ -323,12 +327,16 @@ One of the biggest advantages of using Seaborn is that you can retain its aesthe
 sns.set_style("dark")
 sns.distplot(inp1.Rating, bins=20, color="g")
 plt.title("Distribution of app ratings", fontsize=12)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 sns.set_style("white")
 sns.distplot(inp1.Rating, bins=20, color="g")
 plt.title("Distribution of app ratings", fontsize=12)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 plt.style.available
 
@@ -336,24 +344,31 @@ plt.style.use("tableau-colorblind10")
 
 #Change the number of bins to 20
 sns.distplot(inp1.Rating, bins=20)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 plt.style.use("ggplot")
 
 sns.distplot(inp1.Rating, bins=20)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 plt.style.use("dark_background")
 
 sns.distplot(inp1.Rating, bins=20)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 # Commented out IPython magic to ensure Python compatibility.
 plt.style.use("default")
-# %matplotlib inline
 
 sns.distplot(inp1.Rating, bins=20)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 """#### Pie-Chart and Bar Chart
 
@@ -388,15 +403,21 @@ inp1['Content Rating'].value_counts()
 
 #Plot a pie chart
 inp1['Content Rating'].value_counts().plot.pie()
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 #Plot a bar chart
 inp1['Content Rating'].value_counts().plot.bar()
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 #Question - Plot a bar plot for checking the 4th highest Android version type
 inp1['Content Rating'].value_counts().plot.barh()
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 """#### Scatter Plots
 
@@ -422,7 +443,9 @@ https://seaborn.pydata.org/generated/seaborn.jointplot.html
 
 ##Plot a scatter-plot in the matplotlib way between Size and Rating
 plt.scatter(inp1.Size, inp1.Rating)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 ### Plot the same thing now using a jointplot
 sns.set_style("white")
@@ -430,11 +453,15 @@ sns.set_style("white")
 ?sns.jointplot
 
 sns.jointplot(x=inp1.Size, y=inp1.Rating)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 ## Plot a jointplot for Price and Rating
 sns.jointplot(x=inp1.Price, y=inp1.Rating)
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 """**Reg Plots**
 
@@ -443,11 +470,15 @@ plt.show()
 
 ##Plot a reg plot for Price and Rating and observe the trend
 sns.jointplot(x=inp1.Price, y=inp1.Rating, kind="reg")
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 ## Question - Plot a reg plot for Price and Rating again for only the paid apps.
 sns.jointplot(x="Price", y="Rating", data=inp1[inp1.Price>0], kind="reg")
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 """**Pair Plots**
 
@@ -468,7 +499,9 @@ You'll be using **sns.pairplot()** for this visualisation. Check out its officia
 ?sns.pairplot
 
 sns.pairplot(data=inp1, vars=['Reviews', 'Size', 'Price', 'Rating'])
-plt.show()
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 
 """**Bar Charts Revisited**
 
@@ -484,20 +517,24 @@ inp1.groupby(['Content Rating'])['Rating'].median().plot.bar()
 
 sns.barplot(data=inp1, x="Content Rating", y="Rating")
 
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Plot the above bar plot using the estimator parameter
 sns.barplot(data=inp1, x="Content Rating", y="Rating", estimator=np.median)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Plot the bar plot with only the 5th percentile of Ratings
 sns.barplot(data=inp1, x="Content Rating", y="Rating", estimator=lambda x: np.quantile(x,0.05))
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Question - Plot the bar plot with the minimum Rating
 sns.barplot(data=inp1, x="Content Rating", y="Rating", estimator=np.min)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 """__Box Plots Revisited__
 
 - Apart from outlier analysis, box plots are great at comparing the spread and analysing a numerical variable across several categories
@@ -510,12 +547,14 @@ plt.show()
 ##Plot a box plot of Rating vs Content Rating
 plt.figure(figsize=[9,7])
 sns.boxplot(x=inp1['Content Rating'], y=inp1.Rating)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Question - Plot a box plot for the Rating column only
 sns.boxplot(inp1.Rating)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Question - Plot a box plot of Ratings across the 4 most popular Genres
 inp1['Genres'].value_counts()
 
@@ -558,12 +597,14 @@ res = pd.pivot_table(data=inp1,index="Content Rating",columns="Size_Bucket",valu
 
 ##Plot a heat map
 sns.heatmap(res)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Apply customisations
 sns.heatmap(res, cmap = "Greens", annot=True)
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Question - Replace Content Rating with Review_buckets in the above heat map
 ##Keep the aggregation at minimum value for Rating
 inp1.dtypes
@@ -587,8 +628,9 @@ inp1.groupby(['updated_month'])['Rating'].mean()
 ## Plot a line graph
 plt.figure(figsize=[10,5])
 inp1.groupby(['updated_month'])['Rating'].mean().plot()
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 """#### Stacked Bar Charts
 
 - A stacked bar chart breaks down each bar of the bar chart on the basis of a different category
@@ -605,14 +647,16 @@ monthly = pd.pivot_table(data=inp1, values="Installs", index="updated_month", co
 
 ##Plot the stacked bar chart.
 monthly.plot(kind="bar", stacked="True", figsize=[10,6])
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 ##Plot the stacked bar chart again wrt to the proportions.
 monthly_perc = monthly[["Everyone","Everyone 10+","Mature 17+","Teen"]].apply(lambda x: x/x.sum(), axis=1)
 
 monthly_perc.plot(kind="bar", stacked="True", figsize=[10,6])
-plt.show()
-
+fig = plt.gcf()
+st.pyplot(fig)
+plt.close(fig)
 """#### Plotly
 
 Plotly is a Python library used for creating interactive visual charts. You can take a look at how you can use it to create aesthetic looking plots with a lot of user-friendly functionalities like hover, zoom, etc.
