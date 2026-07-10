@@ -325,14 +325,14 @@ One of the biggest advantages of using Seaborn is that you can retain its aesthe
 #Check all the styling options
 ?sns.set_style
 sns.set_style("dark")
-sns.distplot(inp1.Rating, bins=20, color="g")
+sns.histplot(inp1["Rating"], bins=20, color="g", kde=True)
 plt.title("Distribution of app ratings", fontsize=12)
 fig = plt.gcf()
 st.pyplot(fig)
 plt.close(fig)
 
 sns.set_style("white")
-sns.distplot(inp1.Rating, bins=20, color="g")
+sns.histplot(inp1["Rating"], bins=20, color="g", kde=True)
 plt.title("Distribution of app ratings", fontsize=12)
 fig = plt.gcf()
 st.pyplot(fig)
